@@ -62,7 +62,7 @@ test:
     - if not exist %LIBRARY_LIB%\\pkgconfig\\libdazzle-1.0.pc exit 1           # [win]
     - if not exist %LIBRARY_LIB%\\girepository-1.0\\Dazzle-1.0.typelib exit 1  # [win]
     - if not exist %LIBRARY_INC%\\libdazzle-1.0\\dazzle.h exit 1        # [win]
-    - if not exist %LIBRARY_BIN%\\dazzle-1.0-1.dll exit 1                      # [win]
+    - if not exist %LIBRARY_BIN%\\dazzle-1.0-0.dll exit 1                      # [win]
     - if not exist %LIBRARY_LIB%\\dazzle-1.0.lib exit 1                        # [win]
 
 about:
