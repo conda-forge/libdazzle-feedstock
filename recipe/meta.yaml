@@ -9,10 +9,11 @@ package:
 source:
   url: https://download.gnome.org/sources/{{ name }}/{{ version_majmin }}/{{ name }}-{{ version }}.tar.xz
   sha256: dba99a7e65fa6662c012b306e5d0f99ff3b466a46059ea7aa0104aaf65ce4ba5
+  patches:
+    - gnu11-fix.diff
 
 build:
-  number: 1
-  skip: True  # [win]
+  number: 2
 
 requirements:
   build:
@@ -61,7 +62,7 @@ test:
     - if not exist %LIBRARY_LIB%\\pkgconfig\\libdazzle-1.0.pc exit 1           # [win]
     - if not exist %LIBRARY_LIB%\\girepository-1.0\\Dazzle-1.0.typelib exit 1  # [win]
     - if not exist %LIBRARY_INC%\\libdazzle-1.0\\dazzle.h exit 1        # [win]
-    - if not exist %LIBRARY_BIN%\\dazzle-1.0-1.dll exit 1                      # [win]
+    - if not exist %LIBRARY_BIN%\\dazzle-1.0-0.dll exit 1                      # [win]
     - if not exist %LIBRARY_LIB%\\dazzle-1.0.lib exit 1                        # [win]
 
 about:
