@@ -12,13 +12,13 @@ set "XDG_DATA_DIRS=%XDG_DATA_DIRS%;%LIBRARY_PREFIX%\share"
 set "CC=clang-cl"
 set "CXX=clang-cl"
 
-%BUILD_PREFIX%\Scripts\meson.exe setup builddir --wrap-mode=nofallback --buildtype=release --prefix=%LIBRARY_PREFIX% --backend=ninja -Dwith_introspection=true -Dwith_vapi=false -Denable_tests=false
+%BUILD_PREFIX%\Scripts\meson.exe setup builddir --wrap-mode=nofallback --buildtype=release %MESON_ARGS% --backend=ninja -Dwith_introspection=true -Dwith_vapi=false -Denable_tests=false
 if errorlevel 1 exit 1
 
-ninja -v -C builddir -j %CPU_COUNT%
+meson compile -C builddir -j %CPU_COUNT%
 if errorlevel 1 exit 1
 
-ninja -C builddir install -j %CPU_COUNT%
+meson compile -C builddir -j %CPU_COUNT%
 if errorlevel 1 exit 1
 
 del %LIBRARY_PREFIX%\bin\*.pdb
