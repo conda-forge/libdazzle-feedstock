@@ -47,7 +47,7 @@ requirements:
         - xorg-libxi
         - xorg-libxinerama
         - xorg-libxfixes
-        - xorg-librandr
+        - xorg-libxrandr
         - xorg-libxrender
         - xorg-libxtst
         - libegl-devel
