@@ -11,6 +11,7 @@ set "XDG_DATA_DIRS=%XDG_DATA_DIRS%;%LIBRARY_PREFIX%\share"
 :: set CXX as well, even though there is no C++ code, as this is necessary for g-ir-scanner to switch to using clang-cl as well...
 set "CC=clang-cl"
 set "CXX=clang-cl"
+set "CFLAGS=%CFLAGS% -Wno-format-nonliteral"
 
 %BUILD_PREFIX%\Scripts\meson.exe setup builddir --wrap-mode=nofallback --buildtype=release %MESON_ARGS% --backend=ninja -Dwith_introspection=true -Dwith_vapi=false -Denable_tests=false
 if errorlevel 1 exit 1
