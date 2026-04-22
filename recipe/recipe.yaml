@@ -1,0 +1,86 @@
+schema_version: 1
+
+context:
+  version: "3.44.0"
+
+package:
+  name: libdazzle
+  version: ${{ version }}
+
+source:
+  url: https://gitlab.gnome.org/Archive/libdazzle/-/archive/${{ version }}/libdazzle-${{ version }}.tar.gz
+  sha256: 279e519bb4f50ea9581ca060df5da1c9f4346c331cc94b31209435d0172340e1
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - gettext-tools
+    - meson
+    - ninja
+    - pkg-config
+    - gobject-introspection
+  host:
+    - expat
+    - glib
+    - gtk3
+    - if: osx
+      then:
+        - libintl-devel
+    - cairo
+    - freetype
+    - pango
+    - gdk-pixbuf
+    - zlib
+    - if: linux
+      then:
+        - xorg-libice
+        - xorg-libsm
+        - xorg-libx11
+        - xorg-libxcomposite
+        - xorg-libxcursor
+        - xorg-libxdamage
+        - xorg-libxext
+        - xorg-libxi
+        - xorg-libxinerama
+        - xorg-libxfixes
+        - xorg-libxrandr
+        - xorg-libxrender
+        - xorg-libxtst
+        - libegl-devel
+        - libgl-devel
+        - xorg-xorgproto
+  ignore_run_exports:
+    from_package:
+      - expat
+      - zlib
+      - freetype
+
+tests:
+  - script:
+      - if: unix
+        then:
+          - test -f ${PREFIX}/include/libdazzle-1.0/dazzle.h
+          - test -f ${PREFIX}/lib/libdazzle-1.0${SHLIB_EXT}
+          - test -f ${PREFIX}/lib/girepository-1.0/Dazzle-1.0.typelib
+          - test -f ${PREFIX}/lib/pkgconfig/libdazzle-1.0.pc
+      - if: win
+        then:
+          - if not exist %LIBRARY_LIB%\\pkgconfig\\libdazzle-1.0.pc exit 1
+          - if not exist %LIBRARY_LIB%\\girepository-1.0\\Dazzle-1.0.typelib exit 1
+          - if not exist %LIBRARY_INC%\\libdazzle-1.0\\dazzle.h exit 1
+          - if not exist %LIBRARY_BIN%\\dazzle-1.0-0.dll exit 1
+          - if not exist %LIBRARY_LIB%\\dazzle-1.0.lib exit 1
+
+about:
+  license: GPL-3.0-or-later
+  license_file: COPYING
+  summary: GNOME companion library to GObject and Gtk+
+  homepage: https://gitlab.gnome.org/GNOME/libdazzle
+
+extra:
+  recipe-maintainers:
+    - tschoonj

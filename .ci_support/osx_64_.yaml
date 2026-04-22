@@ -1,13 +1,19 @@
 MACOSX_DEPLOYMENT_TARGET:
-- '10.9'
+- '11.0'
+MACOSX_SDK_VERSION:
+- '11.0'
 c_compiler:
 - clang
 c_compiler_version:
-- '11'
+- '19'
+c_stdlib:
+- macosx_deployment_target
+c_stdlib_version:
+- '11.0'
 cairo:
-- '1.16'
+- '1'
 channel_sources:
-- conda-forge,defaults
+- conda-forge
 channel_targets:
 - conda-forge main
 gdk_pixbuf:
@@ -17,11 +23,6 @@ glib:
 macos_machine:
 - x86_64-apple-darwin13.4.0
 pango:
-- '1.48'
-pin_run_as_build:
-  cairo:
-    max_pin: x.x
-  pango:
-    max_pin: x.x
+- '1'
 target_platform:
 - osx-64
